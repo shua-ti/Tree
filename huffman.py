@@ -1,16 +1,17 @@
-
+#-*-coding=utf-8-*-
 #/usr/bin/env python
 from itertools import count
 from heapq import heapify,heappush,heappop
+
 def huffman(seq,freq):
-    num = count()
-    trees = list(zip(frq,num,seq))
+    num = count()        #生成无限迭代器 1,2,3,....
+    trees = list(zip(frq,num,seq))#zip()连接多个可迭代对象[(),(),()]
     heapify(trees)
     while len(trees)>1:
-        fa,_,a = heappop(trees)
+        fa,_,a = heappop(trees) #权值较小的两个节点
         fb,_,b = heappop(trees)
         n =next(num)
-        heappush(trees,(fa+fb,n,[a,b]))
+        heappush(trees,(fa+fb,n,[a,b]))#通过列表的嵌套表示树结构，生成新的节点
     return trees[0][-1]
 
 if __name__=="__main__":
